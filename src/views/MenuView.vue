@@ -1,0 +1,81 @@
+<script setup>
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/stores/user";
+import { useWhaleStore } from "@/stores/whale";
+import { apiGet } from '@/api/whaleApi';
+import { Toast, Dialog } from 'vant';
+
+const router = useRouter();
+const userStore = useUserStore();
+const whaleStore = useWhaleStore();
+
+onMounted(() => {
+  
+})
+
+const logout = () => {
+  router.push({name: 'login'});
+}
+
+const onClickLeaveWhale = () => {
+  Dialog.confirm({
+    title: '離開此鯨語',
+    message: '確定要離開此鯨語嗎？',
+    confirmButtonText: '確定',
+    cancelButtonText: '取消',      
+  })
+    .then(() => {
+      leaveWhale();
+    })
+    .catch(() => {
+      // on cancel
+    });
+}
+
+const leaveWhale = () => {
+  apiGet({
+    url: 'WhalePage/RemoveWhale',
+    params: {
+      uid: userStore.uid,
+      wid: whaleStore.wid,
+    }
+  })
+  .then((resp) => {
+    // 進入到鯨語選單
+    router.push({name: 'choose-device'});
+  })
+  .catch((error) => {
+    console.log("Failed");
+    console.log(error);
+    Toast.fail('失敗');
+  })
+}
+
+</script>
+<template>
+  <main class="menu-view full-page has-navbar">
+    <van-cell-group inset title="主功能">
+      <van-cell title="首頁" is-link to="home"  />
+      <van-cell title="歷史訊息" is-link to="history"  />
+      <van-cell title="影片" is-link to="video"  />
+      <van-cell title="排程" is-link to="schedule"  />
+    </van-cell-group>
+    <van-cell-group inset :title="`裝置：${whaleStore.name}`">
+      <van-cell title="鯨語設定" is-link to="device-setting"  />
+      <van-cell title="選擇鯨語" is-link to="choose-device"  />
+      <van-cell title="加入鯨語" is-link to="add-device"  />
+      <van-cell title="離開此鯨語" @click="onClickLeaveWhale"  />
+    </van-cell-group>
+    <van-cell-group inset title="其他">
+      <van-cell title="隱私權政策"  />
+      <van-cell title="登出" @click="logout"  />
+    </van-cell-group>
+  </main>
+</template>
+
+<style lang="scss">
+.menu-view {
+  background-color: #eee;
+}
+</style>

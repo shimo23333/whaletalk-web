@@ -8,10 +8,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "firebase": "^9.9.1",
+    "axios": "^1.2.0",
     "pinia": "^2.0.17",
+    "vant": "^3.6.6",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.2",
+    "vue3-google-login": "^2.0.12"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
@@ -21,6 +23,7 @@
     "eslint-plugin-vue": "^9.0.0",
     "naive-ui": "^2.32.1",
     "prettier": "^2.5.1",
+    "unplugin-vue-components": "^0.22.11",
     "vfonts": "^0.0.3",
     "vite": "^3.0.1"
   }
