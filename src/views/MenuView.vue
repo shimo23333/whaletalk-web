@@ -5,6 +5,7 @@ import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
 import { apiGet } from '@/api/whaleApi';
 import { Toast, Dialog } from 'vant';
+import { showToast, showConfirmDialog, showSuccessToast, showFailToast } from 'vant';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -19,7 +20,7 @@ const logout = () => {
 }
 
 const onClickLeaveWhale = () => {
-  Dialog.confirm({
+  showConfirmDialog({
     title: '離開此鯨語',
     message: '確定要離開此鯨語嗎？',
     confirmButtonText: '確定',
@@ -48,13 +49,23 @@ const leaveWhale = () => {
   .catch((error) => {
     console.log("Failed");
     console.log(error);
-    Toast.fail('失敗');
+    showFailToast('失敗');
   })
 }
 
 </script>
 <template>
   <main class="menu-view full-page has-navbar">
+    <!-- 置頂導覽列 -->
+    <van-nav-bar
+        title="鯨語選單"
+        :left-arrow="true"
+        @click-left="router.go(-1);"
+        fixed
+    >
+    </van-nav-bar>
+
+    <!-- 頁面內容 -->
     <van-cell-group inset title="主功能">
       <van-cell title="首頁" is-link to="home"  />
       <van-cell title="歷史訊息" is-link to="history"  />

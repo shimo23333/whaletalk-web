@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
 import { apiGet } from '@/api/whaleApi';
-import { Toast } from 'vant';
+import { showToast, showSuccessToast, showFailToast } from 'vant';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -30,7 +30,7 @@ onMounted(() => {
   .catch((error) => {
     console.log("Failed");
     console.log(error);
-    Toast.fail('連線失敗');
+    showFailToast('連線失敗');
   })
   .finally(() => {
     console.log("Finally");

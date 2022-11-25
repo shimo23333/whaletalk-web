@@ -77,6 +77,22 @@ const router = createRouter({
         title: '選單',
       },
     },
+    {
+      path: "/message",
+      name: "message",
+      component: () => import("../views/MessageView.vue"),
+      meta: {
+        title: '開始對話',
+      },
+    },
+    {
+      path: "/message-editor",
+      name: "message-editor",
+      component: () => import("../views/MessageEditorView.vue"),
+      meta: {
+        title: '對話編輯',
+      },
+    },
   ],
 });
 

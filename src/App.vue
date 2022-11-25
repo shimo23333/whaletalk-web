@@ -2,14 +2,23 @@
 import { computed } from "@vue/runtime-core";
 import { RouterView } from "vue-router";
 import { useRouter, useRoute } from "vue-router";
+import { useWhaleStore } from "@/stores/whale";
 
 const route = useRoute();
 const router = useRouter();
 const activePage = null;
+const whaleStore = useWhaleStore();
 
 
-// 置頂標題
+// 置頂導覽列標題
 const navBarTitle = computed(() => {
+
+  // 如果是首頁，就顯示鯨語名稱
+  if (route.name === "home") {
+    return whaleStore.name;
+  }
+
+  // 其他頁面就用 routers 裡定義的 meta.title
   return route.meta.title;
 })
 
@@ -50,19 +59,6 @@ const onClickNavMenu = () => {
 
 <template>
   <div>
-      <!-- 置頂頁首 -->
-      <van-nav-bar
-        v-if="isShowNavbar"
-        :title="navBarTitle"
-        :left-arrow="isShowNavLeftArrow"
-        @click-left="onClickNavLeft"
-        fixed
-      >
-        <template #right>
-          <van-icon v-if="isShowNavRightMenu" name="wap-nav" size="20" @click="onClickNavMenu" />
-        </template>
-      </van-nav-bar>
-
       <!-- RouterView 裡面會依網址插入 router/index.js 裡的定義的對應頁面元件（頁面元件通常在 view 資料夾裡）-->
       <RouterView />
       

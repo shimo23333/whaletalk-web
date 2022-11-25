@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user";
 import { decodeCredential } from 'vue3-google-login'
 import { apiGet } from '@/api/whaleApi';
-import { Toast } from 'vant';
+import { showToast, showSuccessToast, showFailToast } from 'vant';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -38,7 +38,7 @@ const callback = (response) => {
   .catch((error) => {
     console.log("Failed");
     console.log(error);
-    Toast.fail('連線失敗');
+    showFailToast('連線失敗');
   })
   .finally(() => {
   });

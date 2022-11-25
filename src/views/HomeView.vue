@@ -16,11 +16,31 @@ onMounted(() => {
 </script>
 <template>
   <main class="full-page has-navbar">
+    <!-- 置頂導覽列 -->
+    <van-nav-bar
+        :title="whaleStore.name"
+        fixed
+    >
+      <template #right>
+        <van-icon name="wap-nav" size="20" @click="router.push({name: 'menu'})" />
+      </template>
+    </van-nav-bar>
+
+    <!-- 頁面內容 -->
     <div class="padding-x">
-      <h1>鯨語首頁</h1>
       <div>
-        <span>{{ whaleStore.name }}</span>
-        <span v-if="whaleStore.isAdmin">(管理員)</span>
+        <div style="text-align: center;">
+          <div>
+            <van-image
+              width="200px"
+              height="200px"
+              style="border: 1px solid #ccc">
+            </van-image>
+          </div>
+          <div>
+            <van-button type="primary" round style="width: 100px" to="message">開始對話</van-button>
+          </div>
+        </div>
       </div>
     </div>
   </main>

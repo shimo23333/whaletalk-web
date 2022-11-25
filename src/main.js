@@ -7,7 +7,7 @@ import "vfonts/Lato.css";
 import vue3GoogleLogin from 'vue3-google-login'
 import 'vant/es/toast/style';
 import 'vant/es/dialog/style';
-
+import { Dialog } from 'vant'
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -19,5 +19,6 @@ app.use(vue3GoogleLogin, {
 app.use(router);
 app.use(PiniaVuePlugin);
 app.use(pinia);
+app.use(Dialog);
 
 app.mount("#app");

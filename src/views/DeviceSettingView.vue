@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
 import { apiGet } from '@/api/whaleApi';
-import { Toast } from 'vant';
+import { showToast, showConfirmDialog, showFailToast } from 'vant';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -29,7 +29,7 @@ const onSubmit = () => {
     }
   })
   .then((resp) => {
-    Toast.success('修改成功');
+    showSuccessToast('修改成功');
     setTimeout(() => {
       router.push({name: 'choose-device'});
     }, 200);
@@ -37,14 +37,13 @@ const onSubmit = () => {
   .catch((error) => {
     console.log(error);
     if (error.response.status === 500) {
-      Toast.fail(error.response.data);
+      showFailToast(error.response.data);
     }
     else {
-      Toast.fail('連線失敗');
+      showFailToast('連線失敗');
     }
   })
   .finally(() => {
-    console.log("Finally");
     isLoading.value = false;
   });
 };
