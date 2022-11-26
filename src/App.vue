@@ -65,9 +65,9 @@ const onClickNavMenu = () => {
       <!-- 置底選單 --> 
       <van-tabbar route v-model="activePage" v-if="isShowTabbar">
         <van-tabbar-item name="home" replace to="/home" icon="home-o">首頁</van-tabbar-item>
-        <van-tabbar-item name="history" replace to="/history" icon="search">歷史紀錄</van-tabbar-item>
-        <van-tabbar-item name="video" replace to="/video" icon="friends-o">影片</van-tabbar-item>
-        <van-tabbar-item name="schedule" replace to="/schedule" icon="setting-o">排程</van-tabbar-item>
+        <van-tabbar-item name="history" replace to="/history" icon="todo-list-o">歷史紀錄</van-tabbar-item>
+        <van-tabbar-item name="video" replace to="/video" icon="video-o">影片</van-tabbar-item>
+        <van-tabbar-item name="schedule" replace to="/schedule" icon="notes-o">排程</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
