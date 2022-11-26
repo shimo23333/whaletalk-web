@@ -38,13 +38,14 @@ onMounted(() => {
   });
 })
 
-function onWhaleClick(wid, name, isAdmin) {
+function onWhaleClick(wid, name, image, isAdmin) {
   console.log(wid);
 
   // 登記選擇的鯨語wid
   whaleStore.setActiveWhale({
     wid, 
     name, 
+    image,
     isAdmin
   });
 
@@ -59,7 +60,7 @@ function onWhaleClick(wid, name, isAdmin) {
       <h1>請選擇你的鯨語</h1>
       <van-loading type="spinner" v-if="isLoading" />
       <div v-for="whale in whaleList" :key="whale.wid">
-        <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.is_admin === '1')">{{ whale.name }} ({{ whale.wid }})</div>
+        <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">{{ whale.name }} ({{ whale.wid }})</div>
       </div>
       <div style="margin-top: 30px">
         <van-button to="add-device">加入鯨語</van-button>
