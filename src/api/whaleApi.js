@@ -2,7 +2,8 @@ import axios from 'axios'
 
 // 環境切換
 if (process.env.NODE_ENV === 'development') {
-    axios.defaults.baseURL = 'http://localhost'
+    // axios.defaults.baseURL = 'http://localhost'
+    axios.defaults.baseURL = 'http://whaletalk-api.suc.tw'
 } else if (process.env.NODE_ENV === 'production') {
     axios.defaults.baseURL = 'http://whaletalk-api.suc.tw'
 }

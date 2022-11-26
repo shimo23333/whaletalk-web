@@ -32,7 +32,7 @@ const onSubmit = () => {
   isLoading.value = true;
 
   apiGet({
-    url: 'WhalePage/UpdateWhale',
+    url: 'Whale/UpdateWhale',
     params: {
       wid: formValue.value.wid,
       name: formValue.value.name,
@@ -74,7 +74,7 @@ const afterRead = (file) => {
   data.append('file', file.content);
 
   apiPostFile({
-    url: 'WhalePage/UploadImage',
+    url: 'Whale/UploadImage',
     data,
   })
   .then((resp) => {

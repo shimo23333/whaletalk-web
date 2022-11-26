@@ -16,7 +16,7 @@ const isLoading = ref(true);
 onMounted(() => {
   // 項後端取得此帳號的鯨語列表
   apiGet({
-    url: 'WhalePage/GetList',
+    url: 'Whale/GetList',
     params: {
       uid: userStore.uid,
     }

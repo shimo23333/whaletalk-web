@@ -21,7 +21,7 @@ const onSubmit = () => {
   isLoading.value = true;
 
   apiGet({
-    url: 'WhalePage/JoinWhale',
+    url: 'Whale/JoinWhale',
     params: {
       uid: userStore.uid,
       wid: formValue.value.wid,

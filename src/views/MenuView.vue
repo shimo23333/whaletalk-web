@@ -38,7 +38,7 @@ const onClickLeaveWhale = () => {
 
 const leaveWhale = () => {
   apiGet({
-    url: 'WhalePage/RemoveWhale',
+    url: 'Whale/RemoveWhale',
     params: {
       uid: userStore.uid,
       wid: whaleStore.wid,
