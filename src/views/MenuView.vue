@@ -81,7 +81,7 @@ const leaveWhale = () => {
       <van-cell title="離開此鯨語" @click="onClickLeaveWhale"  />
     </van-cell-group>
     <van-cell-group inset title="其他">
-      <van-cell title="隱私權政策"  />
+      <van-cell title="隱私權政策" is-link to="privacy"   />
       <van-cell title="登出" @click="logout"  />
     </van-cell-group>
   </main>

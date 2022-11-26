@@ -105,6 +105,14 @@ const router = createRouter({
         title: '對話編輯',
       },
     },
+    {
+      path: "/privacy",
+      name: "privacy",
+      component: () => import("../views/PrivacyView.vue"),
+      meta: {
+        title: '隱私權政策',
+      },
+    },
   ],
 });
 
