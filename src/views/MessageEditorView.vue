@@ -183,7 +183,7 @@ const removeMessage = () => {
           <span v-if="formValue.type === 1">文字訊息</span>
           <span v-if="formValue.type === 2">語音訊息</span>
         </div>
-        <div style="padding: 15px">
+        <div style="padding: 15px" v-if="formValue.type === 2">
           <audio id="audio" controls style="width: 100%" :src="`http://localhost/${formValue.content}`"></audio>
         </div>
         <van-field
