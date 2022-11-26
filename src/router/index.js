@@ -4,7 +4,19 @@ import { useUserStore } from "@/stores/user";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
   routes: [
+    {
+      path: "/",
+      name: "index",
+      component: () => import("../views/HomeView.vue"),
+      meta: {
+        title: '首頁',
+      },
+    },
     {
       path: "/login",
       name: "login",

@@ -22,7 +22,7 @@ const imageList = ref([]);
 
 onMounted(() => {
   if (whaleStore.image != null && whaleStore.image.trim != "") {
-    imageList.value = [{url: `http://whaletalk-api.suc.tw/${whaleStore.image}`, status: 'done'}];
+    imageList.value = [{url: `https://suc.tw/${whaleStore.image}`, status: 'done'}];
   }
 });
 

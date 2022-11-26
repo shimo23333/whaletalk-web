@@ -26,6 +26,12 @@ const onClickItem = (item) => {
 const formatTime = (timeTxt) => {
   return moment(timeTxt).format('MM-DD, hh:mm A');
 } 
+
+const onAudioClick = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  return;
+}
 </script>
 <template>
   <div class="message-item">
@@ -37,7 +43,7 @@ const formatTime = (timeTxt) => {
       <div>
         <div v-if="item.type === 1">{{ item.content }}</div>
         <div v-if="item.type === 2">
-          <audio id="audio" controls style="width: 100%" :src="`http://localhost/${item.content}`"></audio>
+          <audio id="audio" controls style="width: 100%" :src="`https://suc.tw/${item.content}`" @click="onAudioClick($event)"></audio>
         </div>
       </div>
       <div v-if="item.schedule_time" style="font-size: 9pt; color: blue;">

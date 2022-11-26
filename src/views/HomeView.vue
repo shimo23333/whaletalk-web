@@ -32,7 +32,7 @@ onMounted(() => {
         <div style="text-align: center;">
           <div>
             <van-image
-              :src="`http://whaletalk-api.suc.tw/${whaleStore.image}`"
+              :src="`https://suc.tw/${whaleStore.image}`"
               width="200px"
               height="200px"
               fit="cover"

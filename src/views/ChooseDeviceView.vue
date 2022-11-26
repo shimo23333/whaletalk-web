@@ -63,7 +63,7 @@ function onWhaleClick(wid, name, image, isAdmin) {
         <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">
           <div>
             <van-image
-              :src="`http://whaletalk-api.suc.tw/${whale.image}`"
+              :src="`https://suc.tw/${whale.image}`"
               width="150px"
               height="150px"
               fit="cover"

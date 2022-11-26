@@ -170,7 +170,7 @@ const onEndRecord = () => {
     <div class="padding-x">
       <div style="text-align:center;">
         <van-image
-          :src="`http://whaletalk-api.suc.tw/${whaleStore.image}`"
+          :src="`https://suc.tw/${whaleStore.image}`"
           width="100px"
           height="100px"
           fit="cover"
