@@ -63,11 +63,11 @@ function onWhaleClick(wid, name, image, isAdmin) {
         <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">
           <div>
             <van-image
-              :src="`http://localhost/${whale.image}`"
-              width="100px"
-              height="100px"
+              :src="`http://whaletalk-api.suc.tw/${whale.image}`"
+              width="150px"
+              height="150px"
               fit="cover"
-              style="border: 1px solid #ccc">
+              style="border: 1px solid #ccc; border-radius: 15px; overflow:hidden; box-shadow: 1px 1px 15px rgba(0,0,0,0.1);">
             </van-image>
           </div>
           <div>{{ whale.name }}</div>
@@ -82,11 +82,8 @@ function onWhaleClick(wid, name, image, isAdmin) {
 
 <style lang="scss">
 .whale {
-  background-color: #fff;
   border-radius: 20px;
-  height: 150px;
-  padding: 20px;
   margin: 0 0 20px 0;
-  box-shadow: 1px 1px 15px rgba(0,0,0,0.1);
+  text-align: center;
 }
 </style>

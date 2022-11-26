@@ -157,14 +157,24 @@ const onEndRecord = () => {
 </script>
 <template>
   <main class="full-page has-navbar">
+    <!-- 置頂導覽列 -->
+    <van-nav-bar
+        title="對話"
+        :left-arrow="true"
+        @click-left="router.go(-1);"
+        fixed
+    >
+    </van-nav-bar>
+
+    <!-- 頁面內容 -->
     <div class="padding-x">
       <div style="text-align:center;">
         <van-image
-          :src="`http://localhost/${whaleStore.image}`"
+          :src="`http://whaletalk-api.suc.tw/${whaleStore.image}`"
           width="100px"
           height="100px"
           fit="cover"
-          style="border: 1px solid #ccc">
+          style="border: 1px solid #ccc; border-radius: 15px; overflow: hidden;">
         </van-image>
       </div>
       <div style="margin-bottom: 20px; text-align: center">
@@ -189,19 +199,22 @@ const onEndRecord = () => {
           結束錄音
         </van-button>
       </div>
-      <div>
-        <van-cell-group inset>
-          <van-field
-            v-model="messageText"
-            rows="1"
-            autosize
-            label="留言"
-            type="textarea"
-            placeholder="請輸入留言"
-            :disabled="isSendingText"
-          />
-        </van-cell-group>
-        <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出</van-button>
+      <div style="display: flex; width: 100%;">
+        <div style="flex-grow:1;">
+            <van-field
+              v-model="messageText"
+              rows="1"
+              autosize
+              label=""
+              type="textarea"
+              placeholder="請輸入留言"
+              label-width="0px"
+              :disabled="isSendingText"
+            />
+        </div>
+        <div style="width: 85px; padding-left: 5px">
+          <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出</van-button>
+        </div>
       </div>
     </div>
   </main>
