@@ -3,8 +3,10 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
-import { apiGet } from '@/api/whaleApi';
+import { apiGet, apiPostFile } from '@/api/whaleApi';
 import { Toast, showToast, showConfirmDialog, showFailToast } from 'vant';
+import AudioRecorder from 'audio-recorder-polyfill';
+import mpegEncoder from 'audio-recorder-polyfill/mpeg-encoder';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -13,9 +15,18 @@ const whaleStore = useWhaleStore();
 const messageText = ref("");
 const isSendingVoice = ref(false);
 const isSendingText = ref(false);
+const isRecording = ref(false);
+
+let recorder;
 
 onMounted(() => {
-  
+  AudioRecorder.encoder = mpegEncoder;
+  AudioRecorder.prototype.mimeType = 'audio/mpeg'
+  window.MediaRecorder = AudioRecorder;
+})
+
+const isEnableVoice = computed(() => {
+  return !MediaRecorder.notSupported;
 })
 
 const onSendText = () => {
@@ -49,6 +60,37 @@ const onSendText = () => {
   })
 }
 
+
+const onSendVoice = (voiceFile) => {
+
+  isSendingVoice.value = true;
+
+  apiGet({
+    url: 'Message/Add',
+    params: {
+      uid: userStore.uid,
+      wid: whaleStore.wid,
+      type: 2, // 1:文字, 2:聲音
+      content: voiceFile
+    }
+  })
+  .then((resp) => {
+    showToast({
+      message: '成功送出',
+      icon: 'success',
+      duration: 500,
+    });
+  })
+  .catch((error) => {
+    console.log("Failed");
+    console.log(error);
+    showFailToast('失敗');
+  })
+  .finally(() => {
+    isSendingVoice.value = false;
+  })
+}
+
 // 傳送文字按鈕是否能使用
 const isEnableSendTextBtn = computed(() => {
   
@@ -62,16 +104,90 @@ const isEnableSendTextBtn = computed(() => {
   return true;
 });
 
+
+// 開始錄音
+const onStartRecord = () => {
+  isRecording.value = true;
+
+  // Request permissions to record audio
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    recorder = new MediaRecorder(stream)
+
+    // Set record to <audio> when recording will be finished
+    recorder.addEventListener('dataavailable', e => {
+      // audio.src = URL.createObjectURL(e.data);
+
+      const formData = new FormData();
+      formData.append("name", "vincent");
+      formData.append("audio", e.data);
+
+      apiPostFile({
+        url: 'Message/UploadVoice', 
+        data: formData,
+      })
+      .then((resp) => {
+        onSendVoice(resp.voice);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.status === 500) {
+          showFailToast(error.response.data);
+        }
+        else {
+          showFailToast('連線失敗');
+        }
+      })
+    })
+
+    // Start recording
+    recorder.start()
+  })
+}
+
+const onEndRecord = () => {
+  isRecording.value = false;
+  
+  // Stop recording
+  recorder.stop()
+
+  // Remove “recording” icon from browser tab
+  recorder.stream.getTracks().forEach(i => i.stop())
+}
+
 </script>
 <template>
   <main class="full-page has-navbar">
     <div class="padding-x">
       <div style="text-align:center;">
         <van-image
+          :src="`http://localhost/${whaleStore.image}`"
           width="100px"
           height="100px"
+          fit="cover"
           style="border: 1px solid #ccc">
         </van-image>
+      </div>
+      <div style="margin-bottom: 20px; text-align: center">
+        <van-button 
+          v-if="!isRecording"
+          icon="volume"
+          type="primary"
+          round 
+          :loading="isSendingVoice" 
+          @click="onStartRecord"
+        >
+          開始錄音
+        </van-button>
+        <van-button
+          v-if="isRecording"
+          icon="volume"
+          type="warning"
+          round
+          :loading="isSendingVoice"
+          @click="onEndRecord"
+        >
+          結束錄音
+        </van-button>
       </div>
       <div>
         <van-cell-group inset>
@@ -86,9 +202,6 @@ const isEnableSendTextBtn = computed(() => {
           />
         </van-cell-group>
         <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出</van-button>
-      </div>
-      <div>
-        <van-button icon="volume" round :loading="isSendingVoice">開始錄音</van-button>
       </div>
     </div>
   </main>

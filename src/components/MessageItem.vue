@@ -34,7 +34,12 @@ const formatTime = (timeTxt) => {
         <span v-if="item.type === 1">文字訊息</span>
         <span v-if="item.type === 2">語音訊息</span>
       </div>
-      <div>{{ item.content }}</div>
+      <div>
+        <div v-if="item.type === 1">{{ item.content }}</div>
+        <div v-if="item.type === 2">
+          <audio id="audio" controls style="width: 100%" :src="`http://localhost/${item.content}`"></audio>
+        </div>
+      </div>
       <div v-if="item.schedule_time" style="font-size: 9pt; color: blue;">
         排程：{{ formatTime(item.schedule_time) }}
       </div>

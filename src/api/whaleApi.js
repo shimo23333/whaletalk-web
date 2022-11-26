@@ -4,7 +4,7 @@ import axios from 'axios'
 if (process.env.NODE_ENV === 'development') {
     axios.defaults.baseURL = 'http://localhost'
 } else if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = 'http://shimo.suc.tw'
+    axios.defaults.baseURL = 'http://whaletalk-api.suc.tw'
 }
 
 // 请求拦截器

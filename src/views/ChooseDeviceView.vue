@@ -60,7 +60,18 @@ function onWhaleClick(wid, name, image, isAdmin) {
       <h1>請選擇你的鯨語</h1>
       <van-loading type="spinner" v-if="isLoading" />
       <div v-for="whale in whaleList" :key="whale.wid">
-        <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">{{ whale.name }} ({{ whale.wid }})</div>
+        <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">
+          <div>
+            <van-image
+              :src="`http://localhost/${whale.image}`"
+              width="100px"
+              height="100px"
+              fit="cover"
+              style="border: 1px solid #ccc">
+            </van-image>
+          </div>
+          <div>{{ whale.name }}</div>
+        </div>
       </div>
       <div style="margin-top: 30px">
         <van-button to="add-device">加入鯨語</van-button>

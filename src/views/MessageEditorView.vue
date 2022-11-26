@@ -179,7 +179,15 @@ const removeMessage = () => {
     </div>
     <van-form v-if="formValue" @submit="onSubmit">  
       <van-cell-group inset>
+        <div style="font-size: 9pt; color: #aaa; text-align:center; margin: 15px">
+          <span v-if="formValue.type === 1">文字訊息</span>
+          <span v-if="formValue.type === 2">語音訊息</span>
+        </div>
+        <div style="padding: 15px">
+          <audio id="audio" controls style="width: 100%" :src="`http://localhost/${formValue.content}`"></audio>
+        </div>
         <van-field
+          v-if="formValue.type === 1"
           v-model="formValue.content"
           rows="1"
           autosize
