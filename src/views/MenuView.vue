@@ -16,6 +16,8 @@ onMounted(() => {
 })
 
 const logout = () => {
+  userStore.clear();
+  whaleStore.clear();
   router.push({name: 'login'});
 }
 
