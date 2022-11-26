@@ -1,5 +1,11 @@
 <script setup>
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useUserStore } from "@/stores/user";
+import { useWhaleStore } from "@/stores/whale";
+import { Toast } from 'vant';
 
+const router = useRouter();
 </script>
 <template>
   <main class="full-page has-navbar">
