@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
 import { apiGet } from '@/api/whaleApi';
-import moment from 'moment';
+import MessageItem from '@/components/MessageItem.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -56,17 +56,6 @@ const onLoad = () => {
   });
 }
 
-const onClickItem = (item) => {
-  router.push({name: 'message-editor', query: {id: item.id}});
-}
-
-
-const formatTime = (timeTxt) => {
-  //const d = new Date(timeTxt);
-  //return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:${d.getMinutes()}`;
-  return moment(timeTxt).format('MM-DD, hh:mm A');
-} 
-
 </script>
 <template>
   <main class="full-page has-navbar">
@@ -89,29 +78,15 @@ const formatTime = (timeTxt) => {
           finished-text="没有更多了"
           @load="onLoad"
         >
-          <div v-for="item in messageList" :key="item.id" class="message-item">
-            <div @click="onClickItem(item)">
-              <div style="font-size: 9pt; color: #aaa;">
-                <span v-if="item.type === 1">文字訊息</span>
-                <span v-if="item.type === 2">語音訊息</span>
-              </div>
-              <div>{{ item.content }}</div>
-              <div v-if="item.schedule_time" style="font-size: 9pt; color: blue;">
-                排程：{{ formatTime(item.schedule_time) }}
-              </div>
-              <div style="font-size: 9pt; color: #aaa;">{{ formatTime(item.create_at) }}</div>
-            </div>
-          </div>
+          <MessageItem
+            v-for="item in messageList"
+            :key="item.id" 
+            :item="item"
+          />
         </van-list>
       </van-pull-refresh>
     </div>
   </main>
 </template>
 <style lang="scss">
-.message-item {
-  margin: 10px 10px;
-  padding: 10px;
-  background-color: #fff;
-}
-
 </style>

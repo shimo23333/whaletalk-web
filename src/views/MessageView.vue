@@ -66,10 +66,10 @@ const isEnableSendTextBtn = computed(() => {
 <template>
   <main class="full-page has-navbar">
     <div class="padding-x">
-      <div>
+      <div style="text-align:center;">
         <van-image
-          width="150px"
-          height="150px"
+          width="100px"
+          height="100px"
           style="border: 1px solid #ccc">
         </van-image>
       </div>
