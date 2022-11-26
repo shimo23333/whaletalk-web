@@ -19,6 +19,7 @@ onMounted(() => {
 })
 
 const onSendText = () => {
+
   isSendingText.value = true;
 
   apiGet({
@@ -48,6 +49,19 @@ const onSendText = () => {
   })
 }
 
+// 傳送文字按鈕是否能使用
+const isEnableSendTextBtn = computed(() => {
+  
+  // 如果已經在傳送中，不行 
+  if (isSendingText.value) return false;
+  
+  // 如果沒有輸入文字，不行
+  if (messageText.value.trim() === "") return false;
+
+  // 其他，可以
+  return true;
+});
+
 </script>
 <template>
   <main class="full-page has-navbar">
@@ -60,7 +74,6 @@ const onSendText = () => {
         </van-image>
       </div>
       <div>
-        <van-button icon="volume" round :loading="isSendingVoice"></van-button>
         <van-cell-group inset>
           <van-field
             v-model="messageText"
@@ -72,7 +85,10 @@ const onSendText = () => {
             :disabled="isSendingText"
           />
         </van-cell-group>
-        <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText"></van-button>
+        <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出</van-button>
+      </div>
+      <div>
+        <van-button icon="volume" round :loading="isSendingVoice">開始錄音</van-button>
       </div>
     </div>
   </main>
