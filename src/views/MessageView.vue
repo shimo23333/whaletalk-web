@@ -162,58 +162,65 @@ const onEndRecord = () => {
         title="對話"
         :left-arrow="true"
         @click-left="router.go(-1);"
-        fixed
-    >
+        fixed>
+
+        <template #right>
+          <img src="@/assets/images/Menu.png" style="width:40px" @click="router.push({name: 'menu'});"/>
+        </template>
     </van-nav-bar>
 
     <!-- 頁面內容 -->
     <div class="padding-x">
-      <div style="text-align:center;">
+      <div style="text-align:center;"><!-- 頭貼圖片 -->
         <van-image
           :src="`https://suc.tw/${whaleStore.image}`"
-          width="100px"
-          height="100px"
+          width="80px"
+          height="80px"
           fit="cover"
-          style="border: 1px solid #ccc; border-radius: 15px; overflow: hidden;">
+          style="border: 1px solid #ccc; border-radius: 15px; overflow: hidden; margin: 0 0 240px 0;border:0;">
         </van-image>
       </div>
-      <div style="margin-bottom: 20px; text-align: center">
-        <van-button 
-          v-if="!isRecording"
-          icon="volume"
-          type="primary"
-          round 
-          :loading="isSendingVoice" 
-          @click="onStartRecord"
-        >
-          開始錄音
-        </van-button>
-        <van-button
-          v-if="isRecording"
-          icon="volume"
-          type="warning"
-          round
-          :loading="isSendingVoice"
-          @click="onEndRecord"
-        >
-          結束錄音
-        </van-button>
-      </div>
-      <div style="display: flex; width: 100%;">
-        <div style="flex-grow:1;">
-            <van-field
-              v-model="messageText"
-              rows="1"
-              autosize
-              label=""
-              type="textarea"
-              placeholder="請輸入留言"
-              label-width="0px"
-              :disabled="isSendingText"
-            />
+      <div style="display: flex; width: 100%; margin-top:280px"><!-- (開始錄音)((留言)(送出)) -->
+        <div style="margin-bottom: 20px;padding: 0 10px; text-align: center">
+          <van-button 
+            v-if="!isRecording"
+            icon="volume"
+            type="primary"
+            round 
+            :loading="isSendingVoice" 
+            @click="onStartRecord"
+          >
+            <!--開始錄音文字-->
+          </van-button>
+          <van-button
+            v-if="isRecording"
+            icon="volume"
+            type="warning"
+            round
+            :loading="isSendingVoice"
+            @click="onEndRecord"
+          >
+            <!--結束錄音文字-->
+          </van-button>
         </div>
-        <div style="width: 85px; padding-left: 5px">
-          <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出</van-button>
+        <div style="display: flex; width: 100%;">
+          <!--傳送框的白色大區塊-->
+          <div style="flex-grow:1;display: flex; background-color:#fff; ">
+              <van-field
+                v-model="messageText"
+                rows="1"
+                autosize
+                label=""
+                type="textarea"
+                placeholder="Aa"
+                label-width="0px"
+                :disabled="isSendingText"
+              />
+              <!--發送鍵-->
+              <div style="padding-left: 5px;">
+            <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn"><!--送出文字--></van-button>
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -221,5 +228,9 @@ const onEndRecord = () => {
 </template>
 
 <style lang="scss">
+
+.van-button--default {/*取消發送鍵的邊界線*/
+    border: var(--van-button-border-width) solid rgb(255 255 255 / 0%);
+}
 
 </style>

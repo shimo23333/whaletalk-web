@@ -63,11 +63,74 @@ const onClickNavMenu = () => {
       <RouterView />
       
       <!-- 置底選單 --> 
-      <van-tabbar route v-model="activePage" v-if="isShowTabbar">
-        <van-tabbar-item name="home" replace to="/home" icon="home-o">首頁</van-tabbar-item>
-        <van-tabbar-item name="history" replace to="/history" icon="todo-list-o">歷史紀錄</van-tabbar-item>
-        <van-tabbar-item name="video" replace to="/video" icon="video-o">影片</van-tabbar-item>
-        <van-tabbar-item name="schedule" replace to="/schedule" icon="notes-o">排程</van-tabbar-item>
+      <van-tabbar  class="option-group" route v-model="activePage" v-if="isShowTabbar">
+        <van-tabbar-item class="home"  name="home" replace to="/home" icon="home-o"><img src="@/assets/images/Home.png" style="width:80px" @click="router.push({name: 'home'}) ;"/><!--首頁--></van-tabbar-item>
+        <van-tabbar-item class="history" name="history" replace to="/history" icon="todo-list-o"><img src="@/assets/images/Schedule.png" style="width:80px" @click="router.push({name: 'history'}) ;"/><!--歷史紀錄--></van-tabbar-item>
+        <van-tabbar-item class="video" name="video" replace to="/video" icon="video-o"><img src="@/assets/images/Favorite.png" style="width:80px" @click="router.push({name: 'video'}) ;"/><!--影片--></van-tabbar-item>
+        <van-tabbar-item class="schedule" name="schedule" replace to="/schedule" icon="notes-o"><img src="@/assets/images/CalendarMonth.png" style="width:80px" @click="router.push({name: 'video'}) ;"/><!--排程--></van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
+
+<style>
+  .has-navbar {
+    background-color: rgb(255, 255, 255);
+    border: 0;
+  }
+  
+  .option-group{
+    height: 120px;
+  }
+  .home {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--van-tabbar-item-text-color);
+    font-size: var(--van-tabbar-item-font-size);
+    line-height: var(--van-tabbar-item-line-height);
+    cursor: pointer;
+  }
+
+  .history {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--van-tabbar-item-text-color);
+    font-size: var(--van-tabbar-item-font-size);
+    line-height: var(--van-tabbar-item-line-height);
+    cursor: pointer;
+  }
+
+  .video {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--van-tabbar-item-text-color);
+    font-size: var(--van-tabbar-item-font-size);
+    line-height: var(--van-tabbar-item-line-height);
+    cursor: pointer;
+  }
+
+  .schedule {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--van-tabbar-item-text-color);
+    font-size: var(--van-tabbar-item-font-size);
+    line-height: var(--van-tabbar-item-line-height);
+    cursor: pointer;
+  }
+  
+  .van-badge__wrapper.van-tabbar-item__icon {
+    display: none;
+  }
+
+</style>

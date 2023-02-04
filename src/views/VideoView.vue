@@ -11,7 +11,7 @@ const router = useRouter();
   <main class="full-page has-navbar">
     <!-- 置頂導覽列 -->
     <van-nav-bar
-        title="影片"
+        title="投影片"
         fixed
     >
       <template #right>
@@ -21,7 +21,136 @@ const router = useRouter();
 
     <!-- 頁面內容 -->
     <div class="padding-x">
-      <h1>鯨語影片</h1>
+      <div class="movie-area">
+
+        <div class="movie-card">
+          <div class="movie-thumbnail"></div>
+          <div class="movie-description">Fantastic Seascape</div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-thumbnail"></div>
+          <div class="movie-description">Waterfall: Samoa</div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-thumbnail"></div>
+          <div class="movie-description">Galaxy</div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-thumbnail"></div>
+          <div class="movie-description">Mountain Grassland</div>
+        </div>
+
+        <div class="Added_movie-card"><!-- 新增 -->
+          <div class="Added_movie-thumbnail">
+            <div class="arrow">
+              <div class="line-1"></div>
+              <div class="line-2"></div>
+            </div>
+          </div>
+          <div class="Added_movie-description"></div>
+        </div>
+
+      </div>
     </div>
   </main>
 </template>
+
+<style>
+.padding-x {
+  margin-top: 10px;
+}
+.movie-area {/*影片區塊*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    justify-content: space-between;
+    padding: 40px 0;
+}
+
+.movie-card {/*影片縮圖+文字*/
+  box-shadow: 5px 5px 8px rgb(1 2 0 / 10%);
+  border-radius:20px;
+}
+
+.movie-thumbnail {/*影片縮圖*/
+  height: 120px;
+  background-color: #EEF6FF;
+  background-image: url(src/assets/images/FantasticSeascape.png);
+  background-size:cover;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+}
+
+.movie-description {/*影片文字*/
+  color: rgb(135 129 118);
+  background-color: white;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 10px;
+  font-size: 10pt;
+  border-bottom-right-radius:20px;
+  border-bottom-left-radius:20px;
+}
+
+.Added_movie-card {/*新增影片縮圖+文字*/
+  box-shadow: 5px 5px 8px rgb(1 2 0 / 10%);
+  border-radius:20px;
+}
+
+.Added_movie-thumbnail {/*新增影片縮圖*/
+  height: 120px;
+  background-color: #EEF6FF;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+}
+
+.Added_movie-description {/*新增影片文字*/
+  color: rgb(183, 181, 177);
+  background-color: #EEF6FF;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 10px;
+  font-size: 10pt;
+  border-bottom-right-radius:20px;
+  border-bottom-left-radius:20px;
+}
+
+.img-rect-2 {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+.arrow { /* + */
+    position: relative;
+}
+.line-1 {
+    position: absolute;
+    display: block;
+    width: 35px;
+    right: 60px;
+    height: 5.5px;
+    top: 80px;
+    background-color:#C0D3ED;
+    border-radius: 50px;
+}
+.line-2 {
+    position: absolute;
+    display: block;
+    width: 35px;
+    right: 60px;
+    height: 5.5px;
+    top: 80px;
+    background-color: #C0D3ED;
+    transform: rotate(90deg);
+    border-radius: 50px;
+}
+
+</style>
