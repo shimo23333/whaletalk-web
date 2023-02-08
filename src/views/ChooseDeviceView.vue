@@ -117,4 +117,7 @@ function onWhaleClick(wid, name, image, isAdmin) {
   border: 0px;
 }
 
+body {
+  background-color: #f7f8f8;
+}
 </style>

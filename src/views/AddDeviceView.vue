@@ -71,7 +71,7 @@ const onCancel = () => {
 </script>
 <template>
   <main>
-    <center class="welcome" style="text-align: center">新 增 裝 置</center>
+    <center class="new" style="text-align: center">新 增 裝 置</center>
     <img src="@/assets/images/product.png" style="width:250px;margin: 40px 70px;"/>
     <van-form @submit="onSubmit">
       <van-cell-group inset>
@@ -105,15 +105,25 @@ const onCancel = () => {
 </template>
 
 <style lang="scss">
-.whale {
+.AddDeviceView > .whale {
   border: 1px solid #ccc;
   border-radius: 15px;
   height: 150px;
   padding: 20px;
 }
 
-.welcome {
+.AddDeviceView > .welcome {
   font-size: 16pt;
+  padding: 0;
+  margin-top: 120px;
+  height: 30px;
+  line-height: 30px;
+  color: rgb(127, 144, 161);
+  border: 0px;
+}
+
+.new {
+  font-size: 14pt;
   padding: 0;
   margin-top: 120px;
   height: 30px;
