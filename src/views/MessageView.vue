@@ -180,7 +180,7 @@ const onEndRecord = () => {
           style="border: 1px solid #ccc; border-radius: 15px; overflow: hidden; margin: 0 0 240px 0;border:0;">
         </van-image>
       </div>
-      <div style="display: flex; width: 100%; margin-top:280px"><!-- (開始錄音)((留言)(送出)) -->
+      <div style="display: flex; width: 100%; margin-top:270px"><!-- (開始錄音)((留言)(送出)) -->
         <div style="margin-bottom: 20px;padding: 0 10px; text-align: center">
           <van-button 
             v-if="!isRecording"

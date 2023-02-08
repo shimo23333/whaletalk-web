@@ -57,33 +57,64 @@ function onWhaleClick(wid, name, image, isAdmin) {
 <template>
   <main>
     <div class="padding-x">
-      <h1>請選擇你的鯨語</h1>
       <van-loading type="spinner" v-if="isLoading" />
-      <div v-for="whale in whaleList" :key="whale.wid">
-        <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">
-          <div>
-            <van-image
-              :src="`https://suc.tw/${whale.image}`"
-              width="150px"
-              height="150px"
-              fit="cover"
-              style="border: 1px solid #ccc; border-radius: 15px; overflow:hidden; box-shadow: 1px 1px 15px rgba(0,0,0,0.1);">
-            </van-image>
+        <div class="row">
+          <img src="@/assets/images/logo.png" style="width:80px;margin:0px 130px;"/>
+          <div class="whalegroup" v-for="whale in whaleList" :key="whale.wid">
+            <!--選擇鯨語的一個一個區塊 含邊框-->
+            <div class="whale" @click="onWhaleClick(whale.wid, whale.name, whale.image, whale.is_admin === '1')">
+              <div>
+                <!--對象頭貼-->
+                <van-image
+                  :src="`https://suc.tw/${whale.image}`"
+                  width="170px"
+                  height="170px"
+                  fit="cover"
+                  style="border: 1px solid #ccc; border-radius:50%; overflow:hidden; margin: 30px 30px 0 30px;">
+                </van-image>
+              </div>
+              <!--對象暱稱-->
+              <div>{{ whale.name }}</div>
+            </div>
           </div>
-          <div>{{ whale.name }}</div>
         </div>
-      </div>
-      <div style="margin-top: 30px">
-        <van-button to="add-device">加入鯨語</van-button>
+      <!--<div class="textgroup">
+        <center class="welcome">請 選 擇 發 送 對 象</center>
+        <center class="welcome">Please select your Whale Talk.</center>
+      </div>-->
+      <div style="margin:40px 120px;"> <!--加入鯨語按鈕-->
+        <van-button to="add-device">新 增 裝 置</van-button>
       </div>
     </div>
   </main>
 </template>
 
 <style lang="scss">
+
 .whale {
-  border-radius: 20px;
-  margin: 0 0 20px 0;
+  border-radius: 50px;
+  width: 250px;
+  height: 250px;
+  margin: 30px auto 20px auto;
   text-align: center;
+  box-shadow: rgb(23 88 154 / 20%) 0px 0px 8px;
+  background-color: rgb(248, 248, 248);
 }
+.row {
+  margin-top: 45px;
+}
+
+.textgroup {
+  margin-top: 40px;
+}
+.welcome {
+  font-size: 12pt;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  line-height: 30px;
+  color: rgb(127, 144, 161);
+  border: 0px;
+}
+
 </style>

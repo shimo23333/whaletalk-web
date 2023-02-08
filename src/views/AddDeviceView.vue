@@ -71,14 +71,15 @@ const onCancel = () => {
 </script>
 <template>
   <main>
-    <h1 style="text-align: center">加入鯨語</h1>
+    <center class="welcome" style="text-align: center">新 增 裝 置</center>
+    <img src="@/assets/images/product.png" style="width:250px;margin: 40px 70px;"/>
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
           v-model="formValue.wid"
           name="鯨語ID"
           label="鯨語ID"
-          placeholder="鯨語ID"
+          placeholder="請輸入裝置序號"
           :rules="[{ required: true, message: '請填寫鯨語ID' }]"
         />
       </van-cell-group>
@@ -109,5 +110,15 @@ const onCancel = () => {
   border-radius: 15px;
   height: 150px;
   padding: 20px;
+}
+
+.welcome {
+  font-size: 16pt;
+  padding: 0;
+  margin-top: 120px;
+  height: 30px;
+  line-height: 30px;
+  color: rgb(127, 144, 161);
+  border: 0px;
 }
 </style>
