@@ -64,10 +64,10 @@ const onClickNavMenu = () => {
       
       <!-- 置底選單 --> 
       <van-tabbar  class="option-group" route v-model="activePage" v-if="isShowTabbar">
-        <van-tabbar-item class="home"  name="home" replace to="/home" icon="home-o"><img src="@/assets/images/Home.png" style="width:80px" @click="router.push({name: 'home'}) ;"/><!--首頁--></van-tabbar-item>
-        <van-tabbar-item class="history" name="history" replace to="/history" icon="todo-list-o"><img src="@/assets/images/Schedule.png" style="width:80px" @click="router.push({name: 'history'}) ;"/><!--歷史紀錄--></van-tabbar-item>
-        <van-tabbar-item class="video" name="video" replace to="/video" icon="video-o"><img src="@/assets/images/Favorite.png" style="width:80px" @click="router.push({name: 'video'}) ;"/><!--影片--></van-tabbar-item>
-        <van-tabbar-item class="schedule" name="schedule" replace to="/schedule" icon="notes-o"><img src="@/assets/images/CalendarMonth.png" style="width:80px" @click="router.push({name: 'video'}) ;"/><!--排程--></van-tabbar-item>
+        <van-tabbar-item class="home"  name="home" replace to="/home" icon="home-o"><img src="@/assets/images/Home.png" style="width:60px" @click="router.push({name: 'home'}) ;"/><!--首頁--></van-tabbar-item>
+        <van-tabbar-item class="history" name="history" replace to="/history" icon="todo-list-o"><img src="@/assets/images/Schedule.png" style="width:60px" @click="router.push({name: 'history'}) ;"/><!--歷史紀錄--></van-tabbar-item>
+        <van-tabbar-item class="video" name="video" replace to="/video" icon="video-o"><img src="@/assets/images/Favorite.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--影片--></van-tabbar-item>
+        <van-tabbar-item class="schedule" name="schedule" replace to="/schedule" icon="notes-o"><img src="@/assets/images/CalendarMonth.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--排程--></van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -79,7 +79,7 @@ const onClickNavMenu = () => {
   }
   
   .option-group{
-    height: 120px;
+    height: 80px;
   }
   .home {
     display: flex;

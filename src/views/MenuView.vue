@@ -69,20 +69,20 @@ const leaveWhale = () => {
 
     <!-- 頁面內容 -->
     <van-cell-group inset title="主功能">
-      <van-cell title="首頁" is-link to="home"  />
-      <van-cell title="歷史訊息" is-link to="history"  />
-      <van-cell title="影片" is-link to="video"  />
-      <van-cell title="排程" is-link to="schedule"  />
+      <van-cell title="首頁" icon="home-o"  is-link to="home"  />
+      <van-cell title="歷史訊息" icon="notes-o"   is-link to="history"  />
+      <van-cell title="影片" icon="video-o"   is-link to="video"  />
+      <van-cell title="排程" icon="like-o"   is-link to="schedule"  />
     </van-cell-group>
     <van-cell-group inset :title="`裝置：${whaleStore.name}`">
-      <van-cell title="鯨語設定" is-link to="device-setting"  />
-      <van-cell title="選擇鯨語" is-link to="choose-device"  />
-      <van-cell title="加入鯨語" is-link to="add-device"  />
-      <van-cell title="離開此鯨語" @click="onClickLeaveWhale"  />
+      <van-cell title="鯨語設定" icon="setting-o"   is-link to="device-setting"  />
+      <van-cell title="選擇鯨語" icon="smile-comment-o"   is-link to="choose-device"  />
+      <van-cell title="加入鯨語" icon="add-o"   is-link to="add-device"  />
+      <van-cell title="離開此鯨語" icon="close"   @click="onClickLeaveWhale"  />
     </van-cell-group>
     <van-cell-group inset title="其他">
-      <van-cell title="隱私權政策" icon="location-o"  is-link to="privacy"   />
-      <van-cell title="登出" @click="logout"  />
+      <van-cell title="隱私權政策" icon="bulb-o"  is-link to="privacy"   />
+      <van-cell title="登出" icon="exchange"   @click="logout"  />
     </van-cell-group>
   </main>
 </template>

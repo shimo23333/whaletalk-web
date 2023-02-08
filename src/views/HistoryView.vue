@@ -65,7 +65,7 @@ const onLoad = () => {
         fixed
     >
       <template #right>
-        <van-icon name="wap-nav" size="20" @click="router.push({name: 'menu'})" />
+        <img src="@/assets/images/Menu.png" style="width:40px" @click="router.push({name: 'menu'});"/>
       </template>
     </van-nav-bar>
 
