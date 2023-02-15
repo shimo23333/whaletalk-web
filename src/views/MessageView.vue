@@ -17,6 +17,9 @@ const isSendingVoice = ref(false);
 const isSendingText = ref(false);
 const isRecording = ref(false);
 
+// 暫存的已傳送訊息列表
+const sentMsgList = ref([]);
+
 let recorder;
 
 onMounted(() => {
@@ -48,7 +51,17 @@ const onSendText = () => {
       icon: 'success',
       duration: 500,
     });
-    messageText.value = ""; // 清空
+
+    // 加到已送出訊息清單暫時的紀錄
+    sentMsgList.value.push({
+      id: new Date().getTime(),
+      type: 1,
+      content: messageText.value
+    })
+
+    // 清空輸入匡
+    messageText.value = ""; 
+
   })
   .catch((error) => {
     console.log("Failed");
@@ -172,6 +185,16 @@ const onEndRecord = () => {
     <!-- 頁面內容 -->
     <div class="msg-content-view padding-x">
 
+      <!-- 該次暫存的已傳送訊息 -->
+      <div class="sent-msg-list">
+        <div
+          v-for="m in sentMsgList"
+          :key="m.id"
+          class="sent-msg-item">
+          <span class="dialog">{{ m.content }}</span>
+        </div>
+      </div>
+
       <!-- 置頂頭貼圖片 -->
       <div class="avatar-pic">
         <img :src="`https://suc.tw/${whaleStore.image}`">
@@ -262,6 +285,23 @@ const onEndRecord = () => {
     text-align: center;
     text-shadow: 0 0 5px rgb(255, 255, 255);
     font-weight: bold;
+  }
+
+  .sent-msg-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-height: 75vh;
+    justify-content: flex-end;
+
+    >.sent-msg-item {
+      padding: 10px;
+
+      >.dialog {
+        background-color: green;
+        padding: 10px;
+      }
+    }
   }
 
   .msg-input-view {
