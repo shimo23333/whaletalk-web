@@ -6,6 +6,41 @@ import { useWhaleStore } from "@/stores/whale";
 import { Toast } from 'vant';
 
 const router = useRouter();
+
+const videos = ref([
+  {
+    id: 1,
+    name: 'Fantastic Seascape',
+    image: 'xxxxx.jpg',
+    url: 'xxxxxx.mp4',
+  },
+  {
+    id: 2,
+    name: 'Waterfall: Samoa',
+    image: 'xxxxx.jpg',
+    url: 'xxxxxx.mp4',
+  },
+  {
+    id: 3,
+    name: 'Galary',
+    image: 'xxxxx.jpg',
+    url: 'xxxxxx.mp4',
+  },
+  {
+    id: 4,
+    name: 'Mountain Grassland',
+    image: 'xxxxx.jpg',
+    url: 'xxxxxx.mp4',
+  },
+  {
+    id: 5,
+    name: 'Mountain Grassland',
+    image: 'xxxxx.jpg',
+    url: 'xxxxxx.mp4',
+  }
+]);
+
+
 </script>
 <template>
   <main class="full-page has-navbar">
@@ -23,26 +58,15 @@ const router = useRouter();
     <div class="padding-x">
       <div class="movie-area">
 
-        <div class="movie-card">
+        <div
+          v-for="v in videos"
+          :key="v.id"
+          class="movie-card"
+        >
           <div class="movie-thumbnail"></div>
-          <div class="movie-description">Fantastic Seascape</div>
+          <div class="movie-description">{{ v.name }}</div>
         </div>
-
-        <div class="movie-card">
-          <div class="movie-thumbnail"></div>
-          <div class="movie-description">Waterfall: Samoa</div>
-        </div>
-
-        <div class="movie-card">
-          <div class="movie-thumbnail"></div>
-          <div class="movie-description">Galaxy</div>
-        </div>
-
-        <div class="movie-card">
-          <div class="movie-thumbnail"></div>
-          <div class="movie-description">Mountain Grassland</div>
-        </div>
-
+        
         <div class="Added_movie-card"><!-- 新增 -->
           <div class="Added_movie-thumbnail">
             <div class="arrow">
