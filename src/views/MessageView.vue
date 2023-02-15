@@ -156,10 +156,10 @@ const onEndRecord = () => {
 
 </script>
 <template>
-  <main class="full-page has-navbar">
+  <main class="full-page has-navbar message-view">
     <!-- 置頂導覽列 -->
     <van-nav-bar
-        title="對話"
+        title=""
         :left-arrow="true"
         @click-left="router.go(-1);"
         fixed>
@@ -170,56 +170,51 @@ const onEndRecord = () => {
     </van-nav-bar>
 
     <!-- 頁面內容 -->
-    <div class="padding-x">
-      <div style="text-align:center;"><!-- 頭貼圖片 -->
-        <van-image
-          :src="`https://suc.tw/${whaleStore.image}`"
-          width="80px"
-          height="80px"
-          fit="cover"
-          style="border: 1px solid #ccc; border-radius: 15px; overflow: hidden; margin: 0 0 240px 0;border:0;">
-        </van-image>
+    <div class="msg-content-view padding-x">
+
+      <!-- 置頂頭貼圖片 -->
+      <div class="avatar-pic">
+        <img :src="`https://suc.tw/${whaleStore.image}`">
       </div>
-      <div style="display: flex; width: 100%; margin-top:270px"><!-- (開始錄音)((留言)(送出)) -->
-        <div style="margin-bottom: 20px;padding: 0 10px; text-align: center">
-          <van-button 
-            v-if="!isRecording"
-            icon="volume"
-            type="primary"
-            round 
-            :loading="isSendingVoice" 
-            @click="onStartRecord"
-          >
-            <!--開始錄音文字-->
-          </van-button>
-          <van-button
-            v-if="isRecording"
-            icon="volume"
-            type="warning"
-            round
-            :loading="isSendingVoice"
-            @click="onEndRecord"
-          >
-            <!--結束錄音文字-->
-          </van-button>
-        </div>
-        <div style="display: flex; width: 100%;">
-          <!--傳送框的白色大區塊-->
-          <div style="flex-grow:1;display: flex; background-color:#fff; ">
+      <div class="avatar-pic-name">
+        {{ whaleStore.name }}
+      </div>
+
+      <!-- 置底輸入框 -->
+      <div class="msg-input-view">
+        <div class="msg-inputs"><!-- (開始錄音)((留言)(送出)) -->
+          <div style="padding: 0 10px; text-align: center">
+            <!-- 開始錄音按鈕 -->
+            <div
+              v-if="!isRecording"
+              class="record-btn"
+              @click="onStartRecord">
+              <img src="@/assets/images/Keyboard_Voice.png">
+            </div>
+            <!-- 結束錄音按鈕 -->
+            <div
+              v-if="isRecording"
+              class="record-btn"
+              @click="onEndRecord">
+              <img src="@/assets/images/Keyboard_Voice.png">
+            </div>
+          </div>
+          <div style="flex-grow: 1;">
+            <!--傳送框的白色大區塊-->
+            <div class="text-input-and-button">
               <van-field
                 v-model="messageText"
-                rows="1"
-                autosize
                 label=""
-                type="textarea"
                 placeholder="Aa"
                 label-width="0px"
                 :disabled="isSendingText"
               />
               <!--發送鍵-->
-              <div style="padding-left: 5px;">
-            <van-button icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn"><!--送出文字--></van-button>
-          </div>
+              <div class="send-btn" :class="{'loading': isSendingText }" @click="onSendText">
+                <img src="@/assets/images/Send.png">
+              </div>
+              <!-- <van-button class="send-btn" icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出文字</van-button> -->
+            </div>
           </div>
         </div>
       </div>
@@ -229,8 +224,116 @@ const onEndRecord = () => {
 
 <style lang="scss">
 
-.van-button--default {/*取消發送鍵的邊界線*/
+.message-view {
+  background-color: #fff;
+
+  .van-button--default {/*取消發送鍵的邊界線*/
     border: var(--van-button-border-width) solid rgb(255 255 255 / 0%);
+  }
+
+  .msg-content-view {
+    padding: 0 0 150px 0;
+  }
+
+  .avatar-pic {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 50px;
+    z-index: 999;
+    padding-top: 15px;
+
+    >img {
+      display: block;
+      width: 100px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      overflow: hidden;border:0;
+      margin: 0 0 0 -55px;
+      border: 7px solid #fff;
+    }
+  }
+
+  .avatar-pic-name {
+    position: fixed;
+    top: 130px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 0 5px rgb(255, 255, 255);
+    font-weight: bold;
+  }
+
+  .msg-input-view {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    padding: 35px 15px;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(240,244,246,1) 54%, rgba(227,234,239,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(240,244,246,1) 54%,rgba(227,234,239,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(240,244,246,1) 54%,rgba(227,234,239,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#e3eaef',GradientType=0 );
+
+    .msg-inputs {
+      display: flex;
+      width: 100%;
+      height: 50px;
+      align-items: center;
+
+      .record-btn {
+        background-color: #fff;
+        width: 55px;
+        height: 55px;
+        border-radius: 28px;
+
+        >img {
+          width: 100%;
+        } 
+      }
+
+      .text-input-and-button {
+        display: flex;
+        background-color: #fff;
+        width: 100%;
+        height: 50px;
+        border-radius: 23px;
+        overflow: hidden;
+
+        >.van-cell.van-field {
+          height: 50px;
+
+          .van-field__control {
+            line-height: 30px;
+            font-size: 15pt;
+            padding-left: 4px;
+          }
+        }
+
+        >.send-btn {
+          width: 50px;
+          height: 50px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-right: 4px;
+
+          &.loading {
+            opacity: 0.4;
+          }
+
+          >img {
+            display: block;
+            width: 80%;
+            height: 80%;
+          }
+        }
+      }
+    }
+  }
 }
+
 
 </style>

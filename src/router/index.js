@@ -94,7 +94,7 @@ const router = createRouter({
       name: "message",
       component: () => import("../views/MessageView.vue"),
       meta: {
-        title: '開始對話',
+        title: '對話',
       },
     },
     {

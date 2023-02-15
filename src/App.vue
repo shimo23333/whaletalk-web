@@ -43,7 +43,7 @@ const isShowNavRightMenu = computed(() => {
 
 // 是否顯示置底選單
 const isShowTabbar = computed(() => {
-  const hidePages = ['login', 'choose-device', 'add-device', 'menu'];
+  const hidePages = ['login', 'choose-device', 'add-device', 'menu', 'message'];
   return !hidePages.includes(route.name);
 })
 
@@ -59,15 +59,15 @@ const onClickNavMenu = () => {
 
 <template>
   <div>
-      <!-- RouterView 裡面會依網址插入 router/index.js 裡的定義的對應頁面元件（頁面元件通常在 view 資料夾裡）-->
-      <RouterView />
-      
-      <!-- 置底選單 --> 
-      <van-tabbar  class="option-group" route v-model="activePage" v-if="isShowTabbar">
-        <van-tabbar-item class="home"  name="home" replace to="/home" icon="home-o"><img src="@/assets/images/Home.png" style="width:60px" @click="router.push({name: 'home'}) ;"/><!--首頁--></van-tabbar-item>
-        <van-tabbar-item class="history" name="history" replace to="/history" icon="todo-list-o"><img src="@/assets/images/Schedule.png" style="width:60px" @click="router.push({name: 'history'}) ;"/><!--歷史紀錄--></van-tabbar-item>
-        <van-tabbar-item class="video" name="video" replace to="/video" icon="video-o"><img src="@/assets/images/Favorite.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--影片--></van-tabbar-item>
-        <van-tabbar-item class="schedule" name="schedule" replace to="/schedule" icon="notes-o"><img src="@/assets/images/CalendarMonth.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--排程--></van-tabbar-item>
+    <!-- RouterView 裡面會依網址插入 router/index.js 裡的定義的對應頁面元件（頁面元件通常在 view 資料夾裡）-->
+    <RouterView />
+    
+    <!-- 置底選單 --> 
+    <van-tabbar  class="option-group" route v-model="activePage" v-if="isShowTabbar">
+      <van-tabbar-item class="home"  name="home" replace to="/home" icon="home-o"><img src="@/assets/images/Home.png" style="width:60px" @click="router.push({name: 'home'}) ;"/><!--首頁--></van-tabbar-item>
+      <van-tabbar-item class="history" name="history" replace to="/history" icon="todo-list-o"><img src="@/assets/images/Schedule.png" style="width:60px" @click="router.push({name: 'history'}) ;"/><!--歷史紀錄--></van-tabbar-item>
+      <van-tabbar-item class="video" name="video" replace to="/video" icon="video-o"><img src="@/assets/images/Favorite.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--影片--></van-tabbar-item>
+      <van-tabbar-item class="schedule" name="schedule" replace to="/schedule" icon="notes-o"><img src="@/assets/images/CalendarMonth.png" style="width:60px" @click="router.push({name: 'video'}) ;"/><!--排程--></van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
