@@ -90,20 +90,18 @@ const leaveWhale = () => {
 <style lang="scss">
 .menu-view {
   background-color: #eee;
-}
-
-.menu-view {
   background-color: #122142;
-}
-.van-cell-group__title {
-  padding-top:40px ;
-  color: white;
-}
-.van-cell {
-    background: #516580;
+
+  .van-cell-group__title {
+    padding-top:40px ;
     color: white;
-}
-.van-cell__right-icon {
-    color: white;
+  }
+  .van-cell {
+      background: #516580;
+      color: white;
+  }
+  .van-cell__right-icon {
+      color: white;
+  }
 }
 </style>
