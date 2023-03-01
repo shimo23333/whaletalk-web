@@ -3,9 +3,9 @@ import axios from 'axios'
 // 環境切換
 if (process.env.NODE_ENV === 'development') {
     // axios.defaults.baseURL = 'http://localhost'
-    axios.defaults.baseURL = 'https://suc.tw'
+    axios.defaults.baseURL = 'https://whaletalk.tw/api/'
 } else if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = 'https://suc.tw'
+    axios.defaults.baseURL = 'https://whaletalk.tw/api/'
 }
 
 // 请求拦截器
