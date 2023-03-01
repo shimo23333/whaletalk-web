@@ -21,7 +21,39 @@ const router = useRouter();
 
     <!-- 頁面內容 -->
     <div class="padding-x">
-      <h1>鯨語排程</h1>
+      <div class="who">
+        <div class="others">所有人</div>
+        <div class="mine">我</div>
+      </div>
     </div>
   </main>
 </template>
+
+<style lang="scss">
+.who {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: aqua;
+  justify-items: center;
+}
+.others{
+  width: 70px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: bisque;
+  margin: 5px;
+  padding:0 5px;
+}
+.mine{
+  width: 70px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: bisque;
+  margin: 5px;
+  padding:0 5px;
+}
+</style>

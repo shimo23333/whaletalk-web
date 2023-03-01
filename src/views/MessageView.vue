@@ -298,7 +298,8 @@ const onEndRecord = () => {
       padding: 10px;
 
       >.dialog {
-        background-color: green;
+        color: #1E549C;
+        background-color: #EDF6FB;
         padding: 10px;
       }
     }
