@@ -51,12 +51,53 @@ const callback = (response) => {
 </script>
 <template>
   <main class="login-page">
-    <h1>Whaletalk</h1>
-    <GoogleLogin :callback="callback"/>
+    <div class="row">
+      <img src="@/assets/images/logo.png" style="width:80px;margin:0px 130px;"/>
+      <center class="Login-Registration-Text">登入/註冊</center>
+      <GoogleLogin :callback="callback"/>
+      <center class="welcome-Chinese">歡 迎 使 用 鯨 語</center>
+      <center class="welcome-English">Welcome to use Whale Talk.</center>
+    </div>
   </main>
 </template>
 <style lang="scss">
 .login-page {
   text-align: center;
+
+  .row{
+    background-color: rgb(255, 255, 255);
+
+    .Login-Registration-Text{
+      font-size: 12pt;
+      padding: 0;
+      margin: 0;
+      height: 30px;
+      line-height: 30px;
+      color: rgb(127, 144, 161);
+      border: 0px;
+      margin-top: 80px;
+      margin-bottom: 10px;
+    }
+
+    .welcome-Chinese{
+      font-size: 12pt;
+      padding: 0;
+      height: 30px;
+      line-height: 30px;
+      color: rgb(127, 144, 161);
+      border: 0px;
+      margin-top: 80px;
+    }
+
+    .welcome-English{
+      font-size: 12pt;
+      padding: 0;
+      margin: 0;
+      height: 30px;
+      line-height: 30px;
+      color: rgb(127, 144, 161);
+      border: 0px;
+    }
+  }
 }
 </style>

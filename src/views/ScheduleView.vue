@@ -188,7 +188,7 @@ const getRecordInHour = (h) => {
 
     <!-- 頁面內容 -->
     <div class="padding-x">
-      <div class="time-list"><!--時間-->
+      <div class="time-list">
         <div v-for="t in 24" class="time-item">
           <div class="ty">
             <div>
@@ -200,8 +200,8 @@ const getRecordInHour = (h) => {
 
               <span class="records">
                 <span v-for="r in getRecordInHour(t)" class="record-item" >
-                  {{ r.name }}
-                  <img :src="r.picture">
+                  <!--{{ r.name }}-->
+                  <div class="recording-avatar-box"><img class="recording-avatar" :src="r.picture"></div>
                 </span>
               </span>
             </div>
@@ -221,6 +221,7 @@ const getRecordInHour = (h) => {
       :style="{ padding: '64px' }">
       <div v-if="!isRecording">
         <div class="recorded-text">新增預錄？</div>
+        <img src="@/assets/images/ing-01.png" style="width:150px; padding:15px 0;">
         <div class="recording-button-group">
           <div class="recording-button" @click="onStartRecord">確定</div>
           <div class="recording-button" @click="onCancel">取消</div>
@@ -228,6 +229,7 @@ const getRecordInHour = (h) => {
       </div>
       <div v-if="isRecording">
         <div>錄音中...</div>
+        <img src="@/assets/images/ing-02.png" style="width:150px; padding:15px 0;">
         <div class="recording-button-group">
           <div class="recording-button" @click="onSubmit">送出</div>
           <div class="recording-button" @click="isRecording = false">取消</div>
@@ -280,33 +282,32 @@ const getRecordInHour = (h) => {
 /*按鈕*/
 .add-btn { /* + */
   position: relative;
-}
-.line-1 {
-  position: absolute;
-  display: block;
-  width: 17px;
-  right: 0px;
-  height: 4px;
-  background-color:#C0D3ED;
-  border-radius: 50px;
-  top: 13px;
-}
-.line-2 {
-  position: absolute;
-  display: block;
-  width: 17px;
-  right: 0px;
-  height: 4px;
-  background-color: #C0D3ED;
-  transform: rotate(90deg);
-  border-radius: 50px;
-  top: 13px;
-}
 
+  .line-1 {
+    position: absolute;
+    display: block;
+    width: 17px;
+    right: 0px;
+    height: 4px;
+    background-color:#C0D3ED;
+    border-radius: 50px;
+    top: 13px;
+  }
+  .line-2 {
+    position: absolute;
+    display: block;
+    width: 17px;
+    right: 0px;
+    height: 4px;
+    background-color: #C0D3ED;
+    transform: rotate(90deg);
+    border-radius: 50px;
+    top: 13px;
+  }
+}
 
 .recording-button-group{
     display: grid;
-    
     grid-template-columns: auto auto;
     color: rgb(255, 255, 255);
     font-size: 14pt;
@@ -328,7 +329,26 @@ const getRecordInHour = (h) => {
 .recorded-text{
   font-size: 10pt;
   color: rgb(23, 88, 154);
-  
+  text-align: center;
+}
+.recording-avatar-box{
+  position: relative;
+}
+.recording-avatar{
+  height: 30px;
+  line-height: 30px;
+  border-radius: 20px;
+  margin:0 5px;
+  position: absolute;
+  top: -30px;
+  left: 240px;
+}
+
+
+element.style {
+    z-index: 2002;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 </style>
