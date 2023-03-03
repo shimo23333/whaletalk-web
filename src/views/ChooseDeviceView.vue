@@ -82,7 +82,7 @@ function onWhaleClick(wid, name, image, isAdmin) {
         <center class="welcome">請 選 擇 發 送 對 象</center>
         <center class="welcome">Please select your Whale Talk.</center>
       </div>-->
-      <div style="margin:40px 120px;"> <!--加入鯨語按鈕-->
+      <div style="margin:40px 100px;"> <!--加入鯨語按鈕-->
         <van-button to="add-device">新 增 裝 置</van-button>
       </div>
     </div>
@@ -120,4 +120,5 @@ function onWhaleClick(wid, name, image, isAdmin) {
 body {
   background-color: #f7f8f8;
 }
+
 </style>

@@ -188,30 +188,30 @@ const getRecordInHour = (h) => {
 
     <!-- 頁面內容 -->
     <div class="padding-x">
-      <div class="who">
-        <div class="others">所有人</div>
-        <div class="mine">我</div>
-      </div>
-      <div class="time-list">
-        <div
-          v-for="t in 24"
-          class="time-item"
-        >
-          <span class="time-code">
-            <span v-if="t < 10">0{{t}}</span>
-            <span v-else>{{t}}</span>
-            <span>:00</span>
-          </span>
-          <span class="records">
-            <span
-              v-for="r in getRecordInHour(t)"
-              class="record-item"
-            >
-              {{ r.name }}
-              <img :src="r.picture">
-            </span>
-          </span>
-          <button class="add-btn" @click="onAdd(t)">+</button>
+      <div class="time-list"><!--時間-->
+        <div v-for="t in 24" class="time-item">
+          <div class="ty">
+            <div>
+              <span class="time-code">
+              <span v-if="t < 10">0{{t}}</span>
+              <span v-else>{{t}}</span>
+              <span>:00</span>
+              </span>
+
+              <span class="records">
+                <span v-for="r in getRecordInHour(t)" class="record-item" >
+                  {{ r.name }}
+                  <img :src="r.picture">
+                </span>
+              </span>
+            </div>
+
+            <!-- 按鈕 -->
+            <div class="add-btn" @click="onAdd(t)">
+              <div class="line-1"></div>
+              <div class="line-2"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -220,14 +220,18 @@ const getRecordInHour = (h) => {
       @click-overlay="onCancel"
       :style="{ padding: '64px' }">
       <div v-if="!isRecording">
-        <div>開始錄音</div>
-        <button @click="onStartRecord">確定</button>
-        <button @click="onCancel">取消</button>
+        <div class="recorded-text">新增預錄？</div>
+        <div class="recording-button-group">
+          <div class="recording-button" @click="onStartRecord">確定</div>
+          <div class="recording-button" @click="onCancel">取消</div>
+        </div>
       </div>
       <div v-if="isRecording">
         <div>錄音中...</div>
-        <button @click="onSubmit">送出</button>
-        <button @click="isRecording = false">取消</button>
+        <div class="recording-button-group">
+          <div class="recording-button" @click="onSubmit">送出</div>
+          <div class="recording-button" @click="isRecording = false">取消</div>
+        </div>
       </div>
     </van-popup>
   </main>
@@ -237,7 +241,6 @@ const getRecordInHour = (h) => {
 .who {
   display: grid;
   grid-template-columns: auto auto;
-  background-color: aqua;
   justify-items: center;
 }
 .others{
@@ -260,4 +263,72 @@ const getRecordInHour = (h) => {
   margin: 5px;
   padding:0 5px;
 }
+
+.time-list{
+  margin:20px 0 100px 0;
+}
+
+.ty{
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px 10px;
+  border-bottom:1px solid #C0D3ED;
+  color: rgb(23, 88, 154);
+  font-size: 14pt;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/*按鈕*/
+.add-btn { /* + */
+  position: relative;
+}
+.line-1 {
+  position: absolute;
+  display: block;
+  width: 17px;
+  right: 0px;
+  height: 4px;
+  background-color:#C0D3ED;
+  border-radius: 50px;
+  top: 13px;
+}
+.line-2 {
+  position: absolute;
+  display: block;
+  width: 17px;
+  right: 0px;
+  height: 4px;
+  background-color: #C0D3ED;
+  transform: rotate(90deg);
+  border-radius: 50px;
+  top: 13px;
+}
+
+
+.recording-button-group{
+    display: grid;
+    
+    grid-template-columns: auto auto;
+    color: rgb(255, 255, 255);
+    font-size: 14pt;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+.recording-button{
+    width: 50px;
+    height: 30px;
+    line-height:30px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgb(23, 88, 154);
+    font-size: 12pt;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding: 0 5px;
+    margin:0 5px;
+}
+.recorded-text{
+  font-size: 10pt;
+  color: rgb(23, 88, 154);
+  
+}
+
 </style>
