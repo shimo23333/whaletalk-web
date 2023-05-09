@@ -218,7 +218,7 @@ const getRecordInHour = (h) => {
     <van-popup
       v-model:show="showRecordDialog"
       @click-overlay="onCancel"
-      :style="{ padding: '64px' }">
+      style="padding:40px; border-radius:20px;">
       <div v-if="!isRecording">
         <div class="recorded-text">新增預錄？</div>
         <img src="@/assets/images/ing-01.png" style="width:150px; padding:15px 0;">
@@ -229,7 +229,7 @@ const getRecordInHour = (h) => {
       </div>
       <div v-if="isRecording">
         <div>錄音中...</div>
-        <img src="@/assets/images/ing-02.png" style="width:150px; padding:15px 0;">
+        <img src="@/assets/images/recording.gif" style="width:150px; padding:0 0;">
         <div class="recording-button-group">
           <div class="recording-button" @click="onSubmit">送出</div>
           <div class="recording-button" @click="isRecording = false">取消</div>
@@ -344,11 +344,5 @@ const getRecordInHour = (h) => {
   left: 240px;
 }
 
-
-element.style {
-    z-index: 2002;
-    padding: 20px;
-    border-radius: 20px;
-}
 
 </style>

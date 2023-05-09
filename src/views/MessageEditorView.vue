@@ -188,7 +188,7 @@ const removeMessage = () => {
           <span v-if="formValue.type === 2">語音訊息</span>
         </div>
         <div style="padding: 15px" v-if="formValue.type === 2">
-          <audio id="audio" controls style="width: 100%" :src="`https://whaletalk.tw/api/${formValue.content}`"></audio>
+          
         </div>
         <van-field
           v-if="formValue.type === 1"

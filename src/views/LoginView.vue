@@ -52,7 +52,7 @@ const callback = (response) => {
 <template>
   <main class="login-page">
     <div class="row">
-      <img src="@/assets/images/logo.png" style="width:80px;margin:0px 130px;"/>
+      <img src="@/assets/images/logo.png" style="width:120px;margin:120px 0 0px 0;"/>
       <center class="Login-Registration-Text">登入/註冊</center>
       <GoogleLogin :callback="callback"/>
       <center class="welcome-Chinese">歡 迎 使 用 鯨 語</center>

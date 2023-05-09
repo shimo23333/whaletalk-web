@@ -93,6 +93,13 @@ const onSendVoice = (voiceFile) => {
       icon: 'success',
       duration: 500,
     });
+
+    // 加到已送出訊息清單暫時的紀錄
+    sentMsgList.value.push({
+      id: new Date().getTime(),
+      type: 2,
+      content: voiceFile
+    })
   })
   .catch((error) => {
     console.log("Failed");
@@ -191,13 +198,17 @@ const onEndRecord = () => {
           v-for="m in sentMsgList"
           :key="m.id"
           class="sent-msg-item">
-          <span class="dialog">{{ m.content }}</span>
+          <span class="dialog" v-if="m.type === 1">{{ m.content }}</span>
+          <span class="dialog" v-if="m.type === 2">
+            <img src="@/assets/images/voice-message-icon2.png" style="width:80px;"/>
+            <!--重播失敗<audio id="audio" controls style="width: 200px" :src="`https://whaletalk.tw/api/${m.content}`"></audio>-->
+          </span>
         </div>
       </div>
 
       <!-- 置頂頭貼圖片 -->
       <div class="avatar-pic">
-        <img :src="`https://suc.tw/${whaleStore.image}`">
+        <img :src="`https://whaletalk.tw/api/${whaleStore.image}`">
       </div>
       <div class="avatar-pic-name">
         {{ whaleStore.name }}
@@ -224,19 +235,31 @@ const onEndRecord = () => {
           </div>
           <div style="flex-grow: 1;">
             <!--傳送框的白色大區塊-->
-            <div class="text-input-and-button">
+            <div
+              v-if="!isRecording"
+              class="text-input-and-button"
+            >
               <van-field
                 v-model="messageText"
                 label=""
                 placeholder="Aa"
                 label-width="0px"
                 :disabled="isSendingText"
+                v-on:keyup.enter="onSendText"
               />
               <!--發送鍵-->
               <div class="send-btn" :class="{'loading': isSendingText }" @click="onSendText">
                 <img src="@/assets/images/Send.png">
               </div>
               <!-- <van-button class="send-btn" icon="guide-o" round @click="onSendText" :loading="isSendingText" :disabled="!isEnableSendTextBtn">送出文字</van-button> -->
+            </div>
+            <div
+              v-if="isRecording"
+              class="text-input-and-button"
+            >
+              <img src="@/assets/images/recording.gif">
+              <img src="@/assets/images/recording.gif">
+              <img src="@/assets/images/recording.gif">
             </div>
           </div>
         </div>
@@ -296,11 +319,17 @@ const onEndRecord = () => {
 
     >.sent-msg-item {
       padding: 10px;
+      width: 100%;
+      text-align: right;
 
       >.dialog {
+        display: inline-block;
         color: #1E549C;
         background-color: #EDF6FB;
         padding: 10px;
+        text-align: justify;
+        max-width: 80%;
+        margin: 0 0 0 auto;
       }
     }
   }
@@ -336,6 +365,7 @@ const onEndRecord = () => {
 
       .text-input-and-button {
         display: flex;
+        justify-content: center;
         background-color: #fff;
         width: 100%;
         height: 50px;
@@ -373,6 +403,10 @@ const onEndRecord = () => {
         }
       }
     }
+  }
+  .recording-pic{
+    background-color: aqua;
+
   }
 }
 

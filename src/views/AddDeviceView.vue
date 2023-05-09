@@ -72,7 +72,7 @@ const onCancel = () => {
 <template>
   <main>
     <center class="new" style="text-align: center">新 增 裝 置</center>
-    <img src="@/assets/images/product.png" style="width:250px;margin: 40px 70px;"/>
+    <img src="@/assets/images/logo.png" style="width:200px;margin: 40px 100px;"/>
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field

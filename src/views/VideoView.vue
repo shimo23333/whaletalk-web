@@ -11,25 +11,25 @@ const videos = ref([
   {
     id: 1,
     name: 'Fantastic Seascape',
-    image: 'xxxxx.jpg',
+    image: 'FantasticSeascape.png',
     url: 'xxxxxx.mp4',
   },
   {
     id: 2,
     name: 'Waterfall: Samoa',
-    image: 'xxxxx.jpg',
+    image: 'FantasticSeascape.png',
     url: 'xxxxxx.mp4',
   },
   {
     id: 3,
     name: 'Galary',
-    image: 'xxxxx.jpg',
+    image: 'FantasticSeascape.png',
     url: 'xxxxxx.mp4',
   },
-  {
+  /*{
     id: 4,
     name: 'Mountain Grassland',
-    image: 'xxxxx.jpg',
+    image: 'FantasticSeascape.png',
     url: 'xxxxxx.mp4',
   },
   {
@@ -37,7 +37,7 @@ const videos = ref([
     name: 'Mountain Grassland',
     image: 'xxxxx.jpg',
     url: 'xxxxxx.mp4',
-  }
+  }*/
 ]);
 
 
@@ -57,13 +57,14 @@ const videos = ref([
     <!-- 頁面內容 -->
     <div class="padding-x">
       <div class="movie-area">
-
+        
         <div
           v-for="v in videos"
           :key="v.id"
           class="movie-card"
         >
-          <div class="movie-thumbnail"></div>
+          <!--<div class="movie-thumbnail"></div> 影片上傳區-->
+          <img class="tryimg" src="@/assets/images/FantasticSeascape.png"/><!--之後刪掉-->
           <div class="movie-description">{{ v.name }}</div>
         </div>
         
@@ -103,10 +104,18 @@ const videos = ref([
 .movie-thumbnail {/*影片縮圖*/
   height: 120px;
   background-color: #EEF6FF;
-  background-image: url(src/assets/images/FantasticSeascape.png);
+  /*影片上傳區background-image: url(src/assets/images/FantasticSeascape.png);*/
   background-size:cover;
   border-top-right-radius:20px;
   border-top-left-radius:20px;
+}
+.tryimg{/*之後刪掉*/
+  width: 160px;
+  height: 120px;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+  margin: 0;
+  padding: 0;
 }
 
 .movie-description {/*影片文字*/
@@ -124,6 +133,8 @@ const videos = ref([
 .Added_movie-card {/*新增影片縮圖+文字*/
   box-shadow: 5px 5px 8px rgb(1 2 0 / 10%);
   border-radius:20px;
+  
+  background-color: #EEF6FF;
 }
 
 .Added_movie-thumbnail {/*新增影片縮圖*/
