@@ -5,9 +5,9 @@ import { useUserStore } from "@/stores/user";
 import { useWhaleStore } from "@/stores/whale";
 import { Toast } from 'vant';
 
-const router = useRouter();
+/*const router = useRouter();
 
-const videos = ref([
+使用程式新增的方式執行串const videos = ref([
   {
     id: 1,
     name: 'Fantastic Seascape',
@@ -37,8 +37,8 @@ const videos = ref([
     name: 'Mountain Grassland',
     image: 'xxxxx.jpg',
     url: 'xxxxxx.mp4',
-  }*/
-]);
+  }
+]);*/
 
 
 </script>
@@ -58,15 +58,37 @@ const videos = ref([
     <div class="padding-x">
       <div class="movie-area">
         
-        <div
+        
+        <div class="movie-card">
+          <img class="tryimg" src="@/assets/images/FantasticSeascape.jpg"/>
+          <div class="movie-description">Fantastic Seascape</div>
+        </div>
+
+        <div class="movie-card">
+          <img class="tryimg" src="@/assets/images/waterfall-samoa.jpg"/>
+          <div class="movie-description">Samoa Falls</div>
+        </div>
+
+        <div class="movie-card">
+          <img class="tryimg" src="@/assets/images/galaxy.jpg"/>
+          <div class="movie-description">Galaxy</div>
+        </div>
+
+        <div class="movie-card">
+          <img class="tryimg" src="@/assets/images/Mt. Grassland.jpg"/>
+          <div class="movie-description">Mt. Grassland</div>
+        </div>
+
+        <!--<div
           v-for="v in videos"
           :key="v.id"
           class="movie-card"
         >
-          <!--<div class="movie-thumbnail"></div> 影片上傳區-->
-          <img class="tryimg" src="@/assets/images/FantasticSeascape.png"/><!--之後刪掉-->
+          使用程式新增的方式執行串 影片上傳區
+          <div class="movie-thumbnail"></div>
+          <img class="tryimg" src="@/assets/images/FantasticSeascape.png"/><!
           <div class="movie-description">{{ v.name }}</div>
-        </div>
+        </div>-->
         
         <div class="Added_movie-card"><!-- 新增 -->
           <div class="Added_movie-thumbnail">
@@ -133,7 +155,6 @@ const videos = ref([
 .Added_movie-card {/*新增影片縮圖+文字*/
   box-shadow: 5px 5px 8px rgb(1 2 0 / 10%);
   border-radius:20px;
-  
   background-color: #EEF6FF;
 }
 

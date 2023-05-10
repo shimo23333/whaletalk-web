@@ -188,7 +188,7 @@ const removeMessage = () => {
           <span v-if="formValue.type === 2">語音訊息</span>
         </div>
         <div style="padding: 15px" v-if="formValue.type === 2">
-          
+          <audio id="audio" controls style="width: 100%" :src="`https://whaletalk.tw/api/${formValue.content}`"></audio>
         </div>
         <van-field
           v-if="formValue.type === 1"
@@ -214,7 +214,7 @@ const removeMessage = () => {
           placeholder="選擇日期"
           @click="showDatePicker = true"
         />
-        <van-calendar v-model:show="showDatePicker" @confirm="onDatePickerConfirm" confirm-text="確認" />
+        <!--<van-calendar v-model:show="showDatePicker" @confirm="onDatePickerConfirm" confirm-text="確認" />
         <van-field
           v-if="enableSchedule"
           v-model="timeValue"
@@ -234,7 +234,7 @@ const removeMessage = () => {
             cancel-button-text="取消"
           />
         </van-popup>
-      </van-cell-group>
+      </van-cell-group>-->
       
       <div style="margin: 16px;">
         <van-row gutter="20">
