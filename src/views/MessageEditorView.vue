@@ -214,7 +214,7 @@ const removeMessage = () => {
           placeholder="選擇日期"
           @click="showDatePicker = true"
         />
-        <!--<van-calendar v-model:show="showDatePicker" @confirm="onDatePickerConfirm" confirm-text="確認" />
+        <van-calendar v-model:show="showDatePicker" @confirm="onDatePickerConfirm" confirm-text="確認" />
         <van-field
           v-if="enableSchedule"
           v-model="timeValue"
@@ -234,23 +234,22 @@ const removeMessage = () => {
             cancel-button-text="取消"
           />
         </van-popup>
-      </van-cell-group>-->
-      
-      <div style="margin: 16px;">
-        <van-row gutter="20">
-          <van-col span="8">
-            <van-button round block @click="router.go(-1)">
-              取消
-            </van-button> 
-          </van-col>
-          <van-col span="16">
-            <van-button round block type="primary" :loading="isSubmiting" native-type="submit">
-              儲存
-            </van-button> 
-          </van-col>
-        </van-row>
-      </div>
+      </van-cell-group>
     </van-form>
+    <div style="margin: 16px;">
+      <van-row gutter="20">
+        <van-col span="8">
+          <van-button round block @click="router.go(-1)">
+            取消
+          </van-button> 
+        </van-col>
+        <van-col span="16">
+          <van-button round block type="primary" :loading="isSubmiting" native-type="submit">
+            儲存
+          </van-button> 
+        </van-col>
+      </van-row>
+    </div>
   </main>
 </template>
 

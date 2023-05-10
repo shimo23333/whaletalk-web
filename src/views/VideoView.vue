@@ -75,7 +75,7 @@ import { Toast } from 'vant';
         </div>
 
         <div class="movie-card">
-          <img class="tryimg" src="@/assets/images/Mt. Grassland.jpg"/>
+          <img class="tryimg" src="@/assets/images/Grassland.jpg"/>
           <div class="movie-description">Mt. Grassland</div>
         </div>
 
