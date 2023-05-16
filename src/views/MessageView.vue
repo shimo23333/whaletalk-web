@@ -230,7 +230,7 @@ const onEndRecord = () => {
               v-if="isRecording"
               class="record-btn"
               @click="onEndRecord">
-              <img src="@/assets/images/Keyboard_Voice.png">
+              <img style=" width: 55px;" src="@/assets/images/stopp.png">
             </div>
           </div>
           <div style="flex-grow: 1;">
