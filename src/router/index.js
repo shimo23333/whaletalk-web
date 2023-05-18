@@ -113,6 +113,14 @@ const router = createRouter({
         title: '隱私權政策',
       },
     },
+    {
+      path: "/dev",
+      name: "dev",
+      component: () => import("../views/DevView.vue"),
+      meta: {
+        title: '訊息管理',
+      },
+    },
   ],
 });
 
